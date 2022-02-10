@@ -102,7 +102,7 @@ class Map_Import_Operator(bpy.types.Operator):
                     'file_name'      : "%s/%s.dff" % (
                         self.settings.dff_folder, model
                     ),
-                    'image_ext'      : 'PNG',
+                    'image_ext'      : 'dds',
                     'connect_bones'  : False,
                     'use_mat_split'  : False,
                     'remove_doubles' : True,

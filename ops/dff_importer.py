@@ -63,7 +63,7 @@ class ext_2dfx_importer:
 #######################################################
 class dff_importer:
 
-    image_ext          = "png"
+    image_ext          = "dds"
     use_bone_connect   = False
     current_collection = None
     use_mat_split      = False
@@ -353,7 +353,11 @@ class dff_importer:
             if material.is_textured == 1 and self.image_ext:
                 texture = material.textures[0]
                 path    = os.path.dirname(self.file_name)
-                image_name = "%s.%s" % (texture.name, self.image_ext)
+                if (len(texture.name) < 20):
+                        image_name = "%s.%s" % (texture.name, self.image_ext)
+                else:
+                        image_name = ""
+                        print("Needs file", texture.name)
 
                 # name.None shouldn't exist, lol / Share loaded images among imported materials
                 if (image_name in bpy.data.images and
@@ -385,7 +389,11 @@ class dff_importer:
 
                     if texture:
                         path = os.path.dirname(self.file_name)
-                        image_name = "%s.%s" % (texture.name, self.image_ext)
+                        if (len(texture.name) < 20):
+                                image_name = "%s.%s" % (texture.name, self.image_ext)
+                        else:
+                                image_name = ""
+                                print("Needs file", texture.name)
 
                         # see name.None note above / Share loaded images among imported materials
                         if (image_name in bpy.data.images and
