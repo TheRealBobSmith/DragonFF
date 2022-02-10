@@ -211,6 +211,7 @@ class IMPORT_OT_dff(bpy.types.Operator, ImportHelper):
     image_ext : bpy.props.EnumProperty(
         items =
         (
+            ("DDS", ".dds", "Load a DSS image"),
             ("PNG", ".PNG", "Load a PNG image"),
             ("JPG", ".JPG", "Load a JPG image"),
             ("JPEG", ".JPEG", "Load a JPEG image"),
