@@ -69,6 +69,7 @@ class dff_importer:
     use_mat_split      = False
     remove_doubles     = False
     group_materials    = False
+    new_collection     = False
     version            = ""
     warning            = ""
 
@@ -771,9 +772,12 @@ class dff_importer:
         self.preprocess_atomics()
         
         # Create a new group/collection
-        self.current_collection = create_collection(
-            os.path.basename(file_name)
-        )
+        if self.new_collection:
+            self.current_collection = create_collection(
+                os.path.basename(file_name)
+            )
+        else:
+            self.current_collection = bpy.data.collections['Collection']
         
         self.import_atomics()
         self.import_frames()
@@ -802,6 +806,7 @@ def import_dff(options):
     dff_importer.use_mat_split    = options['use_mat_split']
     dff_importer.remove_doubles   = options['remove_doubles']
     dff_importer.group_materials  = options['group_materials']
+    dff_importer.new_collection   = options['new_collection']
 
     dff_importer.import_dff(options['file_name'])
 

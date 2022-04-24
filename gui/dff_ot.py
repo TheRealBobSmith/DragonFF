@@ -224,6 +224,11 @@ class IMPORT_OT_dff(bpy.types.Operator, ImportHelper):
         description = "Image extension to search textures in"
     )
 
+    new_collection: bpy.props.BoolProperty(
+        name    = "Create a new collection",
+        default = False
+    )
+
     #######################################################
     def draw(self, context):
         layout = self.layout
@@ -239,6 +244,8 @@ class IMPORT_OT_dff(bpy.types.Operator, ImportHelper):
         layout.prop(self, "read_mat_split")
         layout.prop(self, "remove_doubles")
         layout.prop(self, "group_materials")
+
+        layout.prop(self, "new_collection")
         
     #######################################################
     def execute(self, context):
@@ -260,7 +267,8 @@ class IMPORT_OT_dff(bpy.types.Operator, ImportHelper):
                         'connect_bones'  : self.connect_bones,
                         'use_mat_split'  : self.read_mat_split,
                         'remove_doubles' : self.remove_doubles,
-                        'group_materials': self.group_materials
+                        'group_materials': self.group_materials,
+                        'new_collection' : self.new_collection
                     }
                 )
 
