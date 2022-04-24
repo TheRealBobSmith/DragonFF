@@ -777,7 +777,8 @@ class dff_importer:
                 os.path.basename(file_name)
             )
         else:
-            self.current_collection = bpy.data.collections['Collection']
+            self.current_collection = bpy.context.scene.collection
+            #self.current_collection = bpy.data.collections['Collection']
         
         self.import_atomics()
         self.import_frames()
